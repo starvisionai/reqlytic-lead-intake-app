@@ -1,5 +1,6 @@
 import { Outlet, Link, useLocation } from 'react-router-dom';
-import { LayoutDashboard, Plus, History, Settings, Menu, X, Zap, LogOut } from 'lucide-react';
+import { LayoutDashboard, Plus, History, Settings, Menu, X, LogOut } from 'lucide-react';
+import AppLogo from '@/components/AppLogo';
 import { Button } from '@/components/ui/button';
 import { useState } from 'react';
 import { base44 } from '@/api/base44Client';
@@ -25,9 +26,7 @@ export default function AppLayout() {
       {/* Desktop Sidebar */}
       <aside className="hidden lg:flex flex-col w-60 border-r border-border bg-card fixed inset-y-0 left-0 z-30">
         <Link to="/dashboard" className="flex items-center gap-2.5 px-5 py-4 border-b border-border">
-          <div className="h-7 w-7 rounded-lg bg-primary flex items-center justify-center">
-            <Zap className="h-3.5 w-3.5 text-white" />
-          </div>
+          <AppLogo size="sm" />
           <span className="text-base font-bold text-foreground tracking-tight">IntakeIQ</span>
         </Link>
 
@@ -66,9 +65,7 @@ export default function AppLayout() {
       <div className="lg:hidden fixed top-0 left-0 right-0 z-40 bg-card border-b border-border">
         <div className="flex items-center justify-between px-4 py-3">
           <Link to="/dashboard" className="flex items-center gap-2">
-            <div className="h-7 w-7 rounded-lg bg-primary flex items-center justify-center">
-              <Zap className="h-3.5 w-3.5 text-white" />
-            </div>
+            <AppLogo size="sm" />
             <span className="text-base font-bold text-foreground">IntakeIQ</span>
           </Link>
           <Button variant="ghost" size="icon" onClick={() => setMobileOpen(!mobileOpen)} className="h-8 w-8">

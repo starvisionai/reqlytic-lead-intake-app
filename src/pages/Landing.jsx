@@ -2,10 +2,11 @@ import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import {
-  Zap, ArrowRight, FileText, AlertTriangle,
+  ArrowRight, FileText, AlertTriangle,
   MessageSquare, Users, Briefcase, ShoppingCart, Building2,
   Sparkles, Target, ListChecks, Mail, Check
 } from 'lucide-react';
+import AppLogo from '@/components/AppLogo';
 import { motion } from 'framer-motion';
 
 const fadeUp = {
@@ -45,9 +46,7 @@ export default function Landing() {
       <header className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between h-14">
           <div className="flex items-center gap-2.5">
-            <div className="h-8 w-8 rounded-lg bg-primary flex items-center justify-center">
-              <Zap className="h-4 w-4 text-white" />
-            </div>
+            <AppLogo size="md" />
             <span className="text-base font-bold tracking-tight text-slate-900">IntakeIQ</span>
           </div>
           <div className="flex items-center gap-2">
@@ -214,9 +213,7 @@ export default function Landing() {
       <footer className="border-t border-slate-200 py-8 px-4 sm:px-6 bg-white">
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-slate-400">
           <div className="flex items-center gap-2">
-            <div className="h-6 w-6 rounded-md bg-primary flex items-center justify-center">
-              <Zap className="h-3.5 w-3.5 text-white" />
-            </div>
+            <AppLogo size="sm" />
             <span className="font-semibold text-slate-600">IntakeIQ</span>
           </div>
           <span>Turn messy requests into clear next steps.</span>
