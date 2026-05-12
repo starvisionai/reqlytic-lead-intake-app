@@ -45,9 +45,8 @@ export default function Landing() {
       {/* Nav */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between h-14">
-          <div className="flex items-center gap-2.5">
-            <AppLogo size="md" />
-            <span className="text-base font-bold tracking-tight text-slate-900">IntakeIQ</span>
+          <div className="flex items-center">
+            <AppLogo className="h-9" />
           </div>
           <div className="flex items-center gap-2">
             <Link to="/login">
@@ -212,9 +211,8 @@ export default function Landing() {
       {/* Footer */}
       <footer className="border-t border-slate-200 py-8 px-4 sm:px-6 bg-white">
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-slate-400">
-          <div className="flex items-center gap-2">
-            <AppLogo size="sm" />
-            <span className="font-semibold text-slate-600">IntakeIQ</span>
+          <div className="flex items-center">
+            <AppLogo className="h-7" />
           </div>
           <span>Turn messy requests into clear next steps.</span>
           <div className="flex items-center gap-4">
