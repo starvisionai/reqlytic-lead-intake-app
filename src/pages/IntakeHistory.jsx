@@ -83,43 +83,43 @@ export default function IntakeHistory() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-5">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight">Intake History</h1>
-          <p className="text-muted-foreground text-sm mt-1">{filtered.length} records</p>
+          <h1 className="text-xl font-bold tracking-tight">Intake History</h1>
+          <p className="text-muted-foreground text-sm mt-0.5">{filtered.length} record{filtered.length !== 1 ? 's' : ''}</p>
         </div>
-        <Button variant="outline" onClick={exportCSV}>
-          <Download className="h-4 w-4 mr-2" />Export CSV
+        <Button variant="outline" size="sm" onClick={exportCSV}>
+          <Download className="h-3.5 w-3.5 mr-1.5" />Export CSV
         </Button>
       </div>
 
       {/* Filters */}
       <Card className="p-4">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-2.5">
           <div className="lg:col-span-2 relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground" />
             <Input
-              placeholder="Search name, company, or message..."
-              className="pl-9"
+              placeholder="Search name, company, or message…"
+              className="pl-9 h-9 text-sm"
               value={search}
               onChange={e => setSearch(e.target.value)}
             />
           </div>
           <Select value={filterStatus} onValueChange={setFilterStatus}>
-            <SelectTrigger><SelectValue placeholder="Status" /></SelectTrigger>
+            <SelectTrigger className="h-9 text-sm"><SelectValue placeholder="Status" /></SelectTrigger>
             <SelectContent>{statuses.map(s => <SelectItem key={s} value={s}>{s}</SelectItem>)}</SelectContent>
           </Select>
           <Select value={filterPriority} onValueChange={setFilterPriority}>
-            <SelectTrigger><SelectValue placeholder="Priority" /></SelectTrigger>
+            <SelectTrigger className="h-9 text-sm"><SelectValue placeholder="Priority" /></SelectTrigger>
             <SelectContent>{priorities.map(p => <SelectItem key={p} value={p}>{p}</SelectItem>)}</SelectContent>
           </Select>
           <Select value={filterCategory} onValueChange={setFilterCategory}>
-            <SelectTrigger><SelectValue placeholder="Category" /></SelectTrigger>
+            <SelectTrigger className="h-9 text-sm"><SelectValue placeholder="Category" /></SelectTrigger>
             <SelectContent>{categories.map(c => <SelectItem key={c} value={c}>{c}</SelectItem>)}</SelectContent>
           </Select>
           <Select value={sort} onValueChange={setSort}>
-            <SelectTrigger><SelectValue /></SelectTrigger>
+            <SelectTrigger className="h-9 text-sm"><SelectValue /></SelectTrigger>
             <SelectContent>{sortOptions.map(s => <SelectItem key={s.value} value={s.value}>{s.label}</SelectItem>)}</SelectContent>
           </Select>
         </div>
@@ -140,58 +140,60 @@ export default function IntakeHistory() {
           <div className="overflow-x-auto">
             <Table>
               <TableHeader>
-                <TableRow className="bg-muted/50">
-                  <TableHead>Date</TableHead>
-                  <TableHead>Contact</TableHead>
-                  <TableHead className="hidden md:table-cell">Company</TableHead>
-                  <TableHead>Category</TableHead>
-                  <TableHead>Priority</TableHead>
-                  <TableHead>Status</TableHead>
-                  <TableHead className="hidden lg:table-cell">Source</TableHead>
-                  <TableHead className="hidden xl:table-cell">Next Step</TableHead>
+                <TableRow className="bg-muted/30 border-b border-border">
+                  <TableHead className="text-xs font-semibold">Date</TableHead>
+                  <TableHead className="text-xs font-semibold">Contact</TableHead>
+                  <TableHead className="text-xs font-semibold hidden md:table-cell">Company</TableHead>
+                  <TableHead className="text-xs font-semibold hidden sm:table-cell">Category</TableHead>
+                  <TableHead className="text-xs font-semibold">Priority</TableHead>
+                  <TableHead className="text-xs font-semibold">Status</TableHead>
+                  <TableHead className="text-xs font-semibold hidden lg:table-cell">Source</TableHead>
+                  <TableHead className="text-xs font-semibold hidden xl:table-cell">Next Step</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
                 {filtered.map(intake => (
-                  <TableRow key={intake.id} className="cursor-pointer hover:bg-muted/50 transition-colors">
-                    <TableCell>
+                  <TableRow key={intake.id} className="cursor-pointer hover:bg-muted/40 transition-colors">
+                    <TableCell className="py-3">
                       <Link to={`/intake/${intake.id}`} className="block">
-                        <span className="text-sm">{intake.created_date ? format(new Date(intake.created_date), 'MMM d') : '-'}</span>
+                        <span className="text-xs text-muted-foreground whitespace-nowrap">
+                          {intake.created_date ? format(new Date(intake.created_date), 'MMM d, yyyy') : '—'}
+                        </span>
                       </Link>
                     </TableCell>
-                    <TableCell>
+                    <TableCell className="py-3">
                       <Link to={`/intake/${intake.id}`} className="block">
-                        <span className="font-medium text-sm">{intake.contact_name || '-'}</span>
+                        <p className="font-medium text-sm text-foreground">{intake.contact_name || '—'}</p>
                       </Link>
                     </TableCell>
-                    <TableCell className="hidden md:table-cell">
+                    <TableCell className="hidden md:table-cell py-3">
                       <Link to={`/intake/${intake.id}`} className="block text-sm text-muted-foreground">
-                        {intake.company_name || '-'}
+                        {intake.company_name || '—'}
                       </Link>
                     </TableCell>
-                    <TableCell>
+                    <TableCell className="hidden sm:table-cell py-3">
                       <Link to={`/intake/${intake.id}`} className="block">
-                        <span className="text-xs text-muted-foreground">{intake.request_category || '-'}</span>
+                        <span className="text-xs text-muted-foreground">{intake.request_category || '—'}</span>
                       </Link>
                     </TableCell>
-                    <TableCell>
+                    <TableCell className="py-3">
                       <Link to={`/intake/${intake.id}`} className="block">
                         <PriorityBadge priority={intake.priority_level} />
                       </Link>
                     </TableCell>
-                    <TableCell>
+                    <TableCell className="py-3">
                       <Link to={`/intake/${intake.id}`} className="block">
                         <StatusBadge status={intake.status} />
                       </Link>
                     </TableCell>
-                    <TableCell className="hidden lg:table-cell">
-                      <Link to={`/intake/${intake.id}`} className="block text-sm text-muted-foreground">
-                        {intake.source || '-'}
+                    <TableCell className="hidden lg:table-cell py-3">
+                      <Link to={`/intake/${intake.id}`} className="block text-xs text-muted-foreground">
+                        {intake.source || '—'}
                       </Link>
                     </TableCell>
-                    <TableCell className="hidden xl:table-cell">
-                      <Link to={`/intake/${intake.id}`} className="block text-sm text-muted-foreground truncate max-w-[200px]">
-                        {intake.recommended_next_step || '-'}
+                    <TableCell className="hidden xl:table-cell py-3">
+                      <Link to={`/intake/${intake.id}`} className="block text-xs text-muted-foreground truncate max-w-[200px]">
+                        {intake.recommended_next_step || '—'}
                       </Link>
                     </TableCell>
                   </TableRow>
