@@ -26,7 +26,7 @@ export default function AppLayout() {
       {/* Desktop Sidebar */}
       <aside className="hidden lg:flex flex-col w-60 border-r border-border bg-card fixed inset-y-0 left-0 z-30">
         <Link to="/dashboard" className="flex items-center px-5 py-4 border-b border-border">
-          <AppLogo className="h-12" />
+          <AppLogo className="h-14" />
         </Link>
 
         <nav className="flex-1 px-3 py-4 space-y-0.5">
@@ -64,7 +64,7 @@ export default function AppLayout() {
       <div className="lg:hidden fixed top-0 left-0 right-0 z-40 bg-card border-b border-border">
         <div className="flex items-center justify-between px-4 py-3">
           <Link to="/dashboard" className="flex items-center">
-            <AppLogo className="h-12" />
+            <AppLogo className="h-14" />
           </Link>
           <Button variant="ghost" size="icon" onClick={() => setMobileOpen(!mobileOpen)} className="h-8 w-8">
             {mobileOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
