@@ -9,6 +9,7 @@ export default function AppLogo({ className = '' }) {
     <img
       src={LOGO_URL}
       alt="IntakeIQ"
+      style={{ mixBlendMode: 'multiply' }}
       className={`object-contain ${className}`}
     />
   );
