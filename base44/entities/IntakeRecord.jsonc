@@ -1,0 +1,167 @@
+{
+  "name": "IntakeRecord",
+  "type": "object",
+  "properties": {
+    "contact_name": {
+      "type": "string",
+      "description": "Name of the contact"
+    },
+    "contact_email": {
+      "type": "string",
+      "description": "Email of the contact"
+    },
+    "company_name": {
+      "type": "string",
+      "description": "Company name"
+    },
+    "source": {
+      "type": "string",
+      "enum": [
+        "Contact Form",
+        "Email",
+        "Phone Call Notes",
+        "Referral",
+        "Social Media",
+        "Internal Request",
+        "Other"
+      ],
+      "description": "Source of the request"
+    },
+    "original_request_type": {
+      "type": "string",
+      "enum": [
+        "Unknown",
+        "Sales Inquiry",
+        "Support Request",
+        "Client Project Request",
+        "Vendor Inquiry",
+        "Internal Operations Request",
+        "Partnership Request",
+        "General Question"
+      ],
+      "description": "Original request type selected by user"
+    },
+    "raw_request_message": {
+      "type": "string",
+      "description": "The raw unstructured request message"
+    },
+    "optional_notes": {
+      "type": "string",
+      "description": "Optional notes from the user"
+    },
+    "request_summary": {
+      "type": "string",
+      "description": "AI-generated summary"
+    },
+    "request_category": {
+      "type": "string",
+      "enum": [
+        "Sales Inquiry",
+        "Support Request",
+        "Client Project Request",
+        "Vendor Inquiry",
+        "Internal Operations Request",
+        "Partnership Request",
+        "General Question",
+        "Spam or Low Value",
+        "Other"
+      ],
+      "description": "AI-determined category"
+    },
+    "priority_level": {
+      "type": "string",
+      "enum": [
+        "High",
+        "Medium",
+        "Low"
+      ],
+      "description": "Priority level"
+    },
+    "priority_reason": {
+      "type": "string",
+      "description": "Reason for priority assignment"
+    },
+    "urgency_level": {
+      "type": "string",
+      "enum": [
+        "Immediate",
+        "Soon",
+        "Normal",
+        "Low Urgency"
+      ],
+      "description": "Urgency level"
+    },
+    "business_opportunity_level": {
+      "type": "string",
+      "enum": [
+        "High",
+        "Medium",
+        "Low",
+        "Not Applicable"
+      ],
+      "description": "Business opportunity level"
+    },
+    "sentiment": {
+      "type": "string",
+      "enum": [
+        "Positive",
+        "Neutral",
+        "Frustrated",
+        "Urgent",
+        "Confused",
+        "Negative"
+      ],
+      "description": "Detected sentiment"
+    },
+    "key_details_detected": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Key details extracted from the message"
+    },
+    "missing_information": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Missing information that needs to be gathered"
+    },
+    "recommended_next_step": {
+      "type": "string",
+      "description": "Recommended next action"
+    },
+    "suggested_response_draft": {
+      "type": "string",
+      "description": "Draft response to send"
+    },
+    "internal_notes": {
+      "type": "string",
+      "description": "Internal notes for the team"
+    },
+    "follow_up_checklist": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Follow-up action items"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "New",
+        "Reviewed",
+        "Needs Follow-Up",
+        "Responded",
+        "Waiting on Customer",
+        "Closed",
+        "Archived"
+      ],
+      "default": "New",
+      "description": "Current status"
+    }
+  },
+  "required": [
+    "raw_request_message"
+  ]
+}
