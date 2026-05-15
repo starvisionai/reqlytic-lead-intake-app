@@ -67,7 +67,7 @@ export default function Register() {
   };
 
   const handleGoogle = () => {
-    base44.auth.loginWithProvider("google", window.location.origin + "/");
+    base44.auth.loginWithProvider("google", "/");
   };
 
   if (showOtp) {
