@@ -85,8 +85,19 @@ export const AuthProvider = ({ children }) => {
 
   const checkUserAuth = async () => {
     try {
-      // Now check if the user is authenticated
       setIsLoadingAuth(true);
+
+      // If a token arrived via OAuth redirect URL, inject it into the SDK client
+      const urlParams = new URLSearchParams(window.location.search);
+      const urlToken = urlParams.get('access_token');
+      if (urlToken) {
+        base44.auth.setToken(urlToken);
+        // Clean the token from the URL without triggering a reload
+        urlParams.delete('access_token');
+        const cleanUrl = `${window.location.pathname}${urlParams.toString() ? `?${urlParams.toString()}` : ''}${window.location.hash}`;
+        window.history.replaceState({}, document.title, cleanUrl);
+      }
+
       const currentUser = await base44.auth.me();
       setUser(currentUser);
       setIsAuthenticated(true);
