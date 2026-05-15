@@ -19,6 +19,16 @@ import IntakeHistory from '@/pages/IntakeHistory';
 import Settings from '@/pages/Settings';
 import AppLayout from '@/components/layout/AppLayout';
 
+const RootRoute = () => {
+  const { isAuthenticated, isLoadingAuth } = useAuth();
+  if (isLoadingAuth) return (
+    <div className="fixed inset-0 flex items-center justify-center">
+      <div className="w-8 h-8 border-4 border-slate-200 border-t-slate-800 rounded-full animate-spin"></div>
+    </div>
+  );
+  return isAuthenticated ? <Navigate to="/dashboard" replace /> : <Landing />;
+};
+
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
 
@@ -38,7 +48,7 @@ const AuthenticatedApp = () => {
 
   return (
     <Routes>
-      <Route path="/" element={<Landing />} />
+      <Route path="/" element={<RootRoute />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
