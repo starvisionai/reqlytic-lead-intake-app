@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import {
@@ -8,6 +8,8 @@ import {
 } from 'lucide-react';
 import AppLogo from '@/components/AppLogo';
 import { motion } from 'framer-motion';
+import { useEffect } from 'react';
+import { base44 } from '@/api/base44Client';
 
 const fadeUp = {
   initial: { opacity: 0, y: 20 },
@@ -40,6 +42,14 @@ const steps = [
 ];
 
 export default function Landing() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    base44.auth.isAuthenticated().then((authed) => {
+      if (authed) navigate('/dashboard', { replace: true });
+    });
+  }, []);
+
   return (
     <div className="min-h-screen bg-white font-inter">
       {/* Nav */}
