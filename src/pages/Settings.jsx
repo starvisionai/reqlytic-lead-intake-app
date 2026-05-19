@@ -6,7 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Save, Loader2 } from 'lucide-react';
+import { Save, Loader2, LogOut, User } from 'lucide-react';
 import { toast } from 'sonner';
 
 const tones = ['Professional', 'Friendly', 'Concise', 'Consultative', 'Formal'];
@@ -14,6 +14,7 @@ const tones = ['Professional', 'Friendly', 'Concise', 'Consultative', 'Formal'];
 export default function Settings() {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
+  const [currentUser, setCurrentUser] = useState(null);
   const [settings, setSettings] = useState({
     business_name: '',
     business_email: '',
@@ -28,6 +29,7 @@ export default function Settings() {
   useEffect(() => {
     const load = async () => {
       const me = await base44.auth.me();
+      setCurrentUser(me);
       setSettings(prev => ({
         ...prev,
         business_name: me.business_name || '',
@@ -67,6 +69,26 @@ export default function Settings() {
         <h1 className="text-2xl font-bold tracking-tight">Settings</h1>
         <p className="text-muted-foreground text-sm mt-1">Customize your IntakeIQ experience</p>
       </div>
+
+      {/* Account */}
+      <Card className="p-6">
+        <h2 className="font-semibold mb-4">Account</h2>
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center">
+              <User className="h-5 w-5 text-primary" />
+            </div>
+            <div>
+              <p className="font-medium text-sm">{currentUser?.full_name || 'User'}</p>
+              <p className="text-muted-foreground text-xs">{currentUser?.email}</p>
+            </div>
+          </div>
+          <Button variant="outline" size="sm" onClick={() => base44.auth.logout()}>
+            <LogOut className="h-4 w-4 mr-2" />
+            Sign out
+          </Button>
+        </div>
+      </Card>
 
       {/* Company Profile */}
       <Card className="p-6 space-y-5">
