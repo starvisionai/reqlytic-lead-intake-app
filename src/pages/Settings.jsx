@@ -67,7 +67,7 @@ export default function Settings() {
     <div className="space-y-8 max-w-2xl">
       <div>
         <h1 className="text-2xl font-bold tracking-tight">Settings</h1>
-        <p className="text-muted-foreground text-sm mt-1">Customize your IntakeIQ experience</p>
+        <p className="text-muted-foreground text-sm mt-1">Customize your Reqlytic experience</p>
       </div>
 
       {/* Account */}

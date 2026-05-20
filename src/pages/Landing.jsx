@@ -71,7 +71,7 @@ export default function Landing() {
               <span className="text-primary block">clear next steps.</span>
             </h1>
             <p className="mt-6 text-lg text-slate-500 max-w-xl mx-auto leading-relaxed">
-              IntakeIQ analyzes any incoming business request and instantly produces a structured intake record — with priority, summary, missing info, and a ready-to-send response.
+              Reqlytic analyzes any incoming business request and instantly produces a structured intake record — with priority, summary, missing info, and a ready-to-send response.
             </p>
             <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
               <Link to="/register">
